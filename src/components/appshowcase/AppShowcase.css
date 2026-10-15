@@ -1,0 +1,391 @@
+/* ==========================================================
+   CampusPe App Showcase — mobile first
+   ========================================================== */
+
+.cp-app {
+  --cp-blue: #0a8bff;
+  --cp-blue-dark: #0077e6;
+  --cp-text: #0f172a;
+  --cp-muted: #475569;
+
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  padding: 48px 0 56px;
+  box-sizing: border-box;
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  color: var(--cp-text);
+  background: #ffffff;
+}
+
+/* soft gradient washes behind the section */
+.cp-app::before,
+.cp-app::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.cp-app::before {
+  top: 120px;
+  left: -140px;
+  width: 340px;
+  height: 340px;
+  background: radial-gradient(circle, rgba(147, 197, 253, 0.55) 0%, transparent 70%);
+}
+
+.cp-app::after {
+  bottom: -120px;
+  right: -120px;
+  width: 360px;
+  height: 360px;
+  background: radial-gradient(
+    circle,
+    rgba(196, 181, 253, 0.5) 0%,
+    rgba(251, 207, 232, 0.3) 50%,
+    transparent 72%
+  );
+}
+
+.cp-app__container {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+
+/* ---------- Header ---------- */
+.cp-app__header {
+  text-align: center;
+}
+
+.cp-app__title {
+  margin: 0 0 14px;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--cp-blue);
+}
+
+.cp-app__text {
+  margin: 0 auto;
+  max-width: 640px;
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--cp-muted);
+}
+
+.cp-app__text strong {
+  color: var(--cp-text);
+  font-weight: 700;
+}
+
+/* ==========================================================
+   Carousel stage
+   ========================================================== */
+.cp-app__stage {
+  --slide-w: 190px;
+  --step: 125px;
+  --step2: 200px;
+  --s1: 0.72;
+  --s2: 0.55;
+
+  position: relative;
+  width: 100%;
+  height: calc(var(--slide-w) * 2.2);
+  margin-top: 28px;
+  touch-action: pan-y;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.cp-app__slide {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: var(--slide-w);
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  transform: translate(-50%, -50%);
+  transition:
+    transform 0.55s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.55s ease,
+    filter 0.55s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.cp-app__slide:focus-visible {
+  outline: 2px solid var(--cp-blue);
+  outline-offset: 6px;
+  border-radius: 28px;
+}
+
+.cp-app__slide-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 18px 28px rgba(15, 23, 42, 0.22));
+  pointer-events: none;
+}
+
+/* active (center) */
+.cp-app__slide[data-pos="0"] {
+  z-index: 3;
+  opacity: 1;
+  cursor: default;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+/* immediate neighbours */
+.cp-app__slide[data-pos="-1"] {
+  z-index: 2;
+  opacity: 0.9;
+  transform: translate(calc(-50% - var(--step)), -50%) scale(var(--s1));
+}
+
+.cp-app__slide[data-pos="1"] {
+  z-index: 2;
+  opacity: 0.9;
+  transform: translate(calc(-50% + var(--step)), -50%) scale(var(--s1));
+}
+
+/* outer slides: hidden on mobile */
+.cp-app__slide[data-pos="-2"] {
+  z-index: 1;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(calc(-50% - var(--step2)), -50%) scale(var(--s2));
+}
+
+.cp-app__slide[data-pos="2"] {
+  z-index: 1;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(calc(-50% + var(--step2)), -50%) scale(var(--s2));
+}
+
+/* ---------- Dots ---------- */
+.cp-app__dots {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin-top: 20px;
+}
+
+.cp-app__dot {
+  width: 10px;
+  height: 10px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: var(--cp-blue);
+  opacity: 0.55;
+  cursor: pointer;
+  transition: transform 0.25s ease, opacity 0.25s ease, box-shadow 0.25s ease;
+}
+
+.cp-app__dot.is-active {
+  opacity: 1;
+  transform: scale(1.5);
+  box-shadow: 0 0 0 4px rgba(10, 139, 255, 0.18);
+}
+
+.cp-app__dot:focus-visible {
+  outline: 2px solid var(--cp-blue);
+  outline-offset: 3px;
+}
+
+/* ==========================================================
+   Download section (stacked on mobile)
+   ========================================================== */
+.cp-app__download {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  margin-top: 56px;
+}
+
+.cp-app__download-title {
+  margin: 0 0 14px;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--cp-blue);
+}
+
+.cp-app__download-text {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--cp-muted);
+}
+
+.cp-app__stores {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.cp-app__store {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 160px;
+  padding: 9px 18px;
+  color: #ffffff;
+  text-decoration: none;
+  background: #000000;
+  border: 1px solid #3a3a3a;
+  border-radius: 10px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.cp-app__store:hover,
+.cp-app__store:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(15, 23, 42, 0.3);
+  outline: none;
+}
+
+.cp-app__store-icon {
+  flex-shrink: 0;
+  font-size: 24px;
+}
+
+.cp-app__store-label {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+
+.cp-app__store-label small {
+  font-size: 9px;
+  letter-spacing: 0.04em;
+}
+
+.cp-app__store-label strong {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.cp-app__download-visual {
+  display: flex;
+  justify-content: center;
+}
+
+.cp-app__iphone {
+  display: block;
+  width: 100%;
+  max-width: 420px;
+  height: auto;
+  filter: drop-shadow(0 24px 30px rgba(15, 23, 42, 0.25));
+}
+
+/* ==========================================================
+   Tablet — 768px and up (show all 5 phones)
+   ========================================================== */
+@media (min-width: 768px) {
+  .cp-app {
+    padding: 64px 0 72px;
+  }
+
+  .cp-app__container {
+    padding: 0 32px;
+  }
+
+  .cp-app__title {
+    font-size: 30px;
+  }
+
+  .cp-app__text {
+    font-size: 15px;
+  }
+
+  .cp-app__stage {
+    --slide-w: 170px;
+    --step: 190px;
+    --step2: 340px;
+    --s1: 0.85;
+    --s2: 0.72;
+    margin-top: 40px;
+  }
+
+  .cp-app__slide[data-pos="-2"],
+  .cp-app__slide[data-pos="2"] {
+    opacity: 0.85;
+    pointer-events: auto;
+  }
+
+  /* download: text left, image right */
+  .cp-app__download {
+    flex-direction: row;
+    align-items: center;
+    gap: 40px;
+    margin-top: 72px;
+  }
+
+  .cp-app__download-copy,
+  .cp-app__download-visual {
+    flex: 1 1 50%;
+  }
+
+  .cp-app__download-title {
+    font-size: 26px;
+  }
+
+  .cp-app__stores {
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
+/* ==========================================================
+   Desktop — 1024px and up
+   ========================================================== */
+@media (min-width: 1024px) {
+  .cp-app__title {
+    font-size: 34px;
+  }
+
+  .cp-app__stage {
+    --slide-w: 210px;
+    --step: 250px;
+    --step2: 450px;
+  }
+
+  .cp-app__download {
+    gap: 64px;
+  }
+
+  .cp-app__download-title {
+    font-size: 30px;
+  }
+
+  .cp-app__download-text {
+    font-size: 15px;
+  }
+
+  .cp-app__iphone {
+    max-width: 520px;
+  }
+}
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .cp-app__slide,
+  .cp-app__dot,
+  .cp-app__store {
+    transition: none;
+  }
+}

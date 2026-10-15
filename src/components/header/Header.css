@@ -1,0 +1,296 @@
+/* ---------- Mobile first (base) ---------- */
+
+/* Note: no backdrop-filter/transform on .header, they would trap the fixed sidebar inside it. */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--header-height);
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 var(--space-4);
+}
+
+.header__brand {
+  display: flex;
+  align-items: center;
+}
+
+.header__logo {
+  height: 100px;
+  width: auto;
+}
+
+/* Hamburger (right) */
+.header__toggle,
+.header__close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  color: var(--color-text);
+  background: transparent;
+  border: 0;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: background-color 0.2s ease, color 0.2s ease, transform 0.1s ease;
+}
+
+.header__toggle:hover,
+.header__close:hover {
+  background: var(--color-surface-alt);
+  color: var(--color-primary);
+}
+
+.header__toggle:active,
+.header__close:active {
+  background: var(--color-border);
+  transform: scale(0.94);
+}
+
+.header__toggle:focus-visible,
+.header__close:focus-visible,
+.header__link:focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+/* Dark backdrop behind the sidebar */
+.header__overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 110;
+  background: var(--color-overlay);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0s linear 0.3s;
+}
+
+.header__overlay.is-open {
+  opacity: 1;
+  visibility: visible;
+  transition-delay: 0s;
+}
+
+/* Sidebar (slides in from the right) */
+.header__panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 120;
+  display: flex;
+  flex-direction: column;
+  width: min(85vw, 320px);
+  height: 70vh;
+  height: 70dvh; /* sidebar covers 70% of the screen height */
+  border-bottom-left-radius: var(--radius-lg);
+  padding: 0 var(--space-4);
+  overflow-y: auto;
+  background: var(--color-surface);
+  box-shadow: var(--shadow-drawer);
+  transform: translateX(100%);
+  visibility: hidden; /* keeps hidden links out of tab order */
+  transition: transform 0.3s ease, visibility 0s linear 0.3s;
+}
+
+.header__panel.is-open {
+  transform: translateX(0);
+  visibility: visible;
+  transition: transform 0.3s ease, visibility 0s;
+}
+
+.header__panel-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: var(--header-height);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.header__nav-wrap {
+  padding: var(--space-4) 0 var(--space-2);
+}
+
+.header__nav {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.header__link {
+  display: block;
+  width: 100%;
+  padding: 14px var(--space-3);
+  font: inherit;
+  font-size: 1rem;
+  font-weight: 500;
+  text-align: left;
+  color: var(--color-text);
+  background: transparent;
+  border: 0;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.header__link:hover {
+  background: var(--color-primary-soft);
+  color: var(--color-primary);
+}
+
+.header__link:active {
+  background: #dbeafe;
+}
+
+/* Buttons sit at the bottom of the sidebar, full width */
+.header__actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-2) 0 var(--space-6);
+}
+
+.header__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 44px; /* comfortable touch target */
+  padding: 12px 20px;
+  font: inherit;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  line-height: 1;
+  white-space: nowrap;
+  border: 1.5px solid transparent;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: background-color 0.2s ease, color 0.2s ease,
+    border-color 0.2s ease, box-shadow 0.2s ease, transform 0.1s ease;
+}
+
+.header__btn:focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+.header__btn:active {
+  transform: translateY(1px) scale(0.98);
+}
+
+.header__btn--primary {
+  background: var(--color-primary);
+  color: #fff;
+}
+
+.header__btn--primary:hover {
+  background: var(--color-primary-dark);
+  box-shadow: var(--shadow-md);
+}
+
+.header__btn--primary:active {
+  background: var(--color-primary-darker);
+  box-shadow: none;
+}
+
+.header__btn--outline {
+  background: transparent;
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+.header__btn--outline:hover {
+  background: var(--color-primary-soft);
+}
+
+.header__btn--outline:active {
+  background: #dbeafe;
+}
+
+/* ---------- Tablet / desktop: inline navbar ---------- */
+@media (min-width: 768px) {
+  .header__inner {
+    padding: 0 var(--space-6);
+  }
+
+  .header__logo {
+    height: 100px;
+  }
+
+  .header__toggle,
+  .header__overlay,
+  .header__panel-top {
+    display: none;
+  }
+
+  .header__panel {
+    position: static;
+    flex: 1;
+    flex-direction: row;
+    align-items: center;
+    width: auto;
+    height: auto;
+    padding: 0;
+    border-radius: 0;
+    overflow: visible;
+    background: transparent;
+    box-shadow: none;
+    transform: none;
+    visibility: visible;
+    transition: none;
+  }
+
+  .header__nav-wrap {
+    margin: 0 auto;
+    padding: 0;
+  }
+
+  .header__nav {
+    flex-direction: row;
+    gap: var(--space-2);
+  }
+
+  .header__link {
+    width: auto;
+    padding: 10px 14px;
+    font-size: 0.9375rem;
+  }
+
+  .header__actions {
+    flex-direction: row;
+    align-items: center;
+    margin-top: 0;
+    padding: 0;
+  }
+
+  .header__btn {
+    width: auto;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .header__panel,
+  .header__overlay,
+  .header__toggle,
+  .header__close,
+  .header__link,
+  .header__btn {
+    transition: none;
+  }
+}

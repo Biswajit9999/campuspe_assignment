@@ -1,0 +1,146 @@
+/* PartnersMarquee — mobile-first. Base = mobile; larger sizes via min-width. */
+
+.pm {
+  --pm-text: #475569;
+  --pm-logo-h: 36px;     /* logo height */
+  --pm-gap: 28px;        /* half of the space between logos (each side) */
+
+  box-sizing: border-box;
+  padding: 32px 0;
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  color: var(--pm-text);
+  text-align: center;
+}
+.pm *,
+.pm *::before,
+.pm *::after {
+  box-sizing: border-box;
+}
+.pm :where(h2, ul) {
+  margin: 0;
+  padding: 0;
+}
+.pm :where(ul) {
+  list-style: none;
+}
+
+.pm__title {
+  padding: 0 16px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--pm-text);
+}
+
+/* ---------- Viewport: clips the track and fades the edges ---------- */
+.pm__viewport {
+  --pm-duration: 30s;
+  margin-top: 20px;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 10%, #000 90%, transparent);
+  mask-image: linear-gradient(to right, transparent, #000 10%, #000 90%, transparent);
+}
+
+/* ---------- Track: two identical lists side by side, slid by -50% ---------- */
+.pm__track {
+  display: flex;
+  width: max-content;
+  animation: pm-scroll var(--pm-duration) linear infinite;
+  will-change: transform;
+}
+.pm__track--reverse {
+  animation-direction: reverse;
+}
+.pm__list {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+}
+@keyframes pm-scroll {
+  to { transform: translateX(-50%); }
+}
+
+/* ---------- Logo item ----------
+   Spacing is padding (not flex `gap`) so both lists are exactly equal width,
+   which keeps the -50% loop perfectly seamless. */
+.pm-logo {
+  flex-shrink: 0;
+  padding: 0 var(--pm-gap);
+}
+.pm-logo__inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: calc(var(--pm-logo-h) + 12px);
+  color: inherit;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+.pm-logo__inner:focus-visible {
+  outline: 2px solid #0a8cff;
+  outline-offset: 4px;
+}
+.pm-logo__img {
+  display: block;
+  height: var(--pm-logo-h);
+  width: auto;
+  max-width: none;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+/* Text fallback until real logo images are added */
+.pm-logo__wordmark {
+  white-space: nowrap;
+  font-size: calc(var(--pm-logo-h) * 0.5);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: #1e3a8a;
+}
+
+/* ---------- Hover: pause the loop, spotlight one logo (mouse devices only) ---------- */
+@media (hover: hover) {
+  .pm__viewport:hover .pm__track,
+  .pm__viewport:focus-within .pm__track {
+    animation-play-state: paused;
+  }
+  .pm__viewport:hover .pm-logo__inner:not(:hover) {
+    opacity: 0.55;
+  }
+  .pm-logo__inner:hover {
+    transform: translateY(-2px) scale(1.06);
+  }
+}
+.pm-logo__inner:active {
+  transform: scale(0.97);
+}
+
+/* ================= ≥ 640px ================= */
+@media (min-width: 640px) {
+  .pm { --pm-logo-h: 44px; --pm-gap: 40px; padding: 40px 0; }
+  .pm__title { font-size: 14px; }
+}
+
+/* ================= ≥ 1024px ================= */
+@media (min-width: 1024px) {
+  .pm { --pm-logo-h: 56px; --pm-gap: 52px; }
+  .pm__viewport { margin-top: 28px; }
+}
+
+/* ---------- Reduced motion: no auto-scroll, let people swipe/scroll instead ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .pm__viewport {
+    overflow-x: auto;
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+  .pm__track {
+    animation: none;
+  }
+  .pm__list[aria-hidden="true"] {
+    display: none; /* hide the duplicate copy */
+  }
+  .pm-logo__inner {
+    transition: none;
+  }
+}

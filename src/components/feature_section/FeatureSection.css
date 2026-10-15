@@ -1,0 +1,369 @@
+/* ==========================================================
+   CampusPe Feature Section — mobile first
+   (FeatureSection + FeatureCard + FeatureTag styles)
+   ========================================================== */
+
+.cp-feature {
+  --cp-blue: #0a8bff;
+  --cp-blue-dark: #0077e6;
+  --cp-text: #0f172a;
+  --cp-title: #3a3f4b;
+  --cp-muted: #5b6478;
+  --cp-border: #e6eaf5;
+
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  padding: 48px 0;
+  box-sizing: border-box;
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  color: var(--cp-text);
+  background: linear-gradient(180deg, #ffffff 0%, #f7f8fe 50%, #f3f4fd 100%);
+}
+
+.cp-feature::before {
+  content: "";
+  position: absolute;
+  right: -140px;
+  bottom: -140px;
+  width: 360px;
+  height: 360px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(196, 181, 253, 0.35) 0%, transparent 70%);
+  filter: blur(70px);
+  pointer-events: none;
+}
+
+.cp-feature__container {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column; /* vertical on mobile */
+  gap: 32px;
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+
+/* ---------- Intro (left block) ---------- */
+.cp-feature__intro {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.cp-feature__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  color: var(--cp-blue);
+  background: #ffffff;
+  border: 1px solid #d7e6fb;
+  border-radius: 999px;
+  box-shadow: 0 2px 8px rgba(10, 139, 255, 0.1);
+}
+
+.cp-feature__eyebrow-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--cp-blue);
+  box-shadow: 0 0 0 3px rgba(10, 139, 255, 0.18);
+}
+
+.cp-feature__title {
+  margin: 18px 0 0;
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--cp-title);
+}
+
+.cp-feature__highlight {
+  color: var(--cp-blue);
+}
+
+.cp-feature__text {
+  margin: 16px 0 0;
+  max-width: 460px;
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--cp-muted);
+}
+
+.cp-feature__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 22px;
+  padding: 12px 24px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #ffffff;
+  text-decoration: none;
+  background: var(--cp-blue);
+  border-radius: 999px;
+  box-shadow: 0 6px 16px rgba(10, 139, 255, 0.35);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.cp-feature__cta:hover,
+.cp-feature__cta:focus-visible {
+  background: var(--cp-blue-dark);
+  box-shadow: 0 10px 22px rgba(10, 139, 255, 0.45);
+  transform: translateY(-2px);
+  outline: none;
+}
+
+/* ---------- Card list ---------- */
+.cp-feature__list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* ==========================================================
+   FeatureCard (repeating part)
+   ========================================================== */
+.cp-feature-card {
+  display: flex;
+  flex-direction: column; /* tags drop below text on mobile */
+  gap: 14px;
+  padding: 18px;
+  background: #ffffff;
+  border: 1px solid var(--cp-border);
+  border-radius: 14px;
+  box-shadow: 0 6px 20px rgba(15, 23, 42, 0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.cp-feature-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(99, 102, 241, 0.12);
+}
+
+.cp-feature-card__meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.cp-feature-card__number {
+  padding: 3px 7px;
+  font-size: 10px;
+  font-weight: 700;
+  color: #4f5fd6;
+  background: #eef0ff;
+  border-radius: 6px;
+}
+
+.cp-feature-card__label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: #8a93a8;
+}
+
+.cp-feature-card__main {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.cp-feature-card__body {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+/* number as a box on the left (cards without a label) */
+.cp-feature-card__number--box {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  font-size: 11px;
+  border-radius: 8px;
+}
+
+.cp-feature-card__heading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 8px;
+  margin: 10px 0 6px;
+}
+
+.cp-feature-card--numbered .cp-feature-card__heading {
+  margin-top: 5px;
+}
+
+.cp-feature-card__title {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--cp-text);
+}
+
+/* small chip next to the title, e.g. "INSTANT SETUP" */
+.cp-feature-card__badge {
+  padding: 3px 7px;
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #4f5fd6;
+  background: #eef0ff;
+  border-radius: 999px;
+}
+
+.cp-feature-card__text {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--cp-muted);
+}
+
+.cp-feature-card__aside {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.cp-feature-card__note {
+  font-size: 10px;
+  color: #94a3b8;
+}
+
+/* ==========================================================
+   FeatureTag (pill inside a card)
+   ========================================================== */
+.cp-feature-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 10px;
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 1;
+  white-space: nowrap;
+  border: 1px solid transparent;
+  border-radius: 6px;
+}
+
+.cp-feature-tag__icon {
+  font-size: 12px;
+  flex-shrink: 0;
+}
+
+.cp-feature-tag__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.cp-feature-tag__dot--green { background: #22c55e; }
+.cp-feature-tag__dot--red   { background: #e11d48; }
+
+.cp-feature-tag--green   { color: #3f8a1f; background: #f0fae8; border-color: #b7e08f; }
+.cp-feature-tag--outline { color: var(--cp-blue); background: #f3f9ff; border-color: var(--cp-blue); }
+.cp-feature-tag--soft    { color: #1d6fb8; background: #eaf3fb; border-color: #cfe3f5; }
+.cp-feature-tag--dark    { color: #334155; background: #ffffff; border-color: #d9deea; }
+.cp-feature-tag--purple  { color: #7c3aed; background: #f5efff; border-color: #e3d4ff; }
+.cp-feature-tag--neutral { color: #475569; background: #f3f5fb; border-color: #dfe4f1; }
+.cp-feature-tag--red     { color: #e11d48; background: #fff1f3; border-color: #fecdd3; }
+.cp-feature-tag--solid   { color: #ffffff; background: var(--cp-blue); }
+
+/* ==========================================================
+   Tablet — 640px and up (tags move to the right of each card)
+   ========================================================== */
+@media (min-width: 640px) {
+  .cp-feature {
+    padding: 64px 0;
+  }
+
+  .cp-feature__container {
+    padding: 0 32px;
+    gap: 40px;
+  }
+
+  .cp-feature__title {
+    font-size: 36px;
+  }
+
+  .cp-feature__text {
+    font-size: 15px;
+  }
+
+  .cp-feature-card {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 20px 22px;
+  }
+
+  .cp-feature-card__main {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  .cp-feature-card__aside {
+    flex: 0 0 auto;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: flex-start;
+    gap: 8px;
+  }
+}
+
+/* ==========================================================
+   Desktop — 1024px and up (two columns: text | cards)
+   ========================================================== */
+@media (min-width: 1024px) {
+  .cp-feature {
+    padding: 88px 0;
+  }
+
+  .cp-feature__container {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 64px;
+    padding: 0 40px;
+  }
+
+  .cp-feature__intro {
+    flex: 0 0 38%;
+    position: sticky;
+    top: 96px;
+  }
+
+  .cp-feature__title {
+    font-size: 40px;
+  }
+
+  .cp-feature__list {
+    flex: 1 1 auto;
+    min-width: 0;
+    gap: 18px;
+  }
+}
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .cp-feature__cta,
+  .cp-feature-card {
+    transition: none;
+  }
+}

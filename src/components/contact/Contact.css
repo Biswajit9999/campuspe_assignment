@@ -1,0 +1,225 @@
+/* ==========================================================
+   CampusPe "Still have questions?" section — mobile first
+   ========================================================== */
+
+.cp-folder {
+  --cp-blue: #0a8bff;
+  --cp-blue-dark: #0077e6;
+  --cp-text: #0f172a;
+  --cp-muted: #475569;
+
+  width: 100%;
+  padding: 40px 16px;
+  box-sizing: border-box;
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  background: #ffffff;
+}
+
+/* ---------- Card ---------- */
+.cp-folder__card {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 36px 20px;
+  box-sizing: border-box;
+  text-align: center;
+  border-radius: 24px;
+  background: linear-gradient(
+    180deg,
+    #dbeafe 0%,
+    #eaf2ff 28%,
+    #f6f9ff 60%,
+    #ffffff 100%
+  );
+  box-shadow:
+    0 20px 50px rgba(99, 140, 255, 0.18),
+    0 4px 14px rgba(15, 23, 42, 0.04);
+}
+
+/* ---------- Gradient glows (top corners) ---------- */
+.cp-folder__glow {
+  position: absolute;
+  top: -90px;
+  width: 260px;
+  height: 200px;
+  border-radius: 50%;
+  filter: blur(50px);
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.cp-folder__glow--left {
+  left: -70px;
+  background: radial-gradient(circle, #93c5fd 0%, transparent 70%);
+}
+
+.cp-folder__glow--right {
+  right: -70px;
+  background: radial-gradient(circle, #bfdbfe 0%, #c7d2fe 45%, transparent 72%);
+}
+
+/* ---------- Content (vertical on mobile) ---------- */
+.cp-folder__content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+.cp-folder__title {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--cp-text);
+}
+
+.cp-folder__text {
+  margin: 0;
+  max-width: 320px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--cp-muted);
+}
+
+/* ---------- Buttons (stacked on mobile) ---------- */
+.cp-folder__actions {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 12px;
+  width: 100%;
+  max-width: 280px;
+  margin-top: 10px;
+}
+
+.cp-folder__btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 6px 6px 6px 22px;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.cp-folder__btn:hover,
+.cp-folder__btn:focus-visible {
+  transform: translateY(-2px);
+  outline: none;
+}
+
+.cp-folder__btn--primary {
+  color: #ffffff;
+  background: var(--cp-blue);
+  box-shadow: 0 6px 16px rgba(10, 139, 255, 0.35);
+}
+
+.cp-folder__btn--primary:hover {
+  background: var(--cp-blue-dark);
+  box-shadow: 0 10px 22px rgba(10, 139, 255, 0.45);
+}
+
+.cp-folder__btn--outline {
+  color: var(--cp-blue);
+  background: rgba(255, 255, 255, 0.85);
+  border-color: var(--cp-blue);
+}
+
+.cp-folder__btn--outline:hover {
+  box-shadow: 0 8px 20px rgba(10, 139, 255, 0.22);
+}
+
+/* ---------- Round icon chips ---------- */
+.cp-folder__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  font-size: 15px;
+  border-radius: 50%;
+}
+
+.cp-folder__icon--light {
+  color: var(--cp-blue);
+  background: #ffffff;
+}
+
+.cp-folder__icon--solid {
+  color: #ffffff;
+  background: var(--cp-blue);
+}
+
+/* ==========================================================
+   Tablet — 640px and up
+   ========================================================== */
+@media (min-width: 640px) {
+  .cp-folder {
+    padding: 56px 24px;
+  }
+
+  .cp-folder__card {
+    padding: 52px 32px 56px;
+  }
+
+  .cp-folder__title {
+    font-size: 28px;
+  }
+
+  .cp-folder__text {
+    max-width: 420px;
+    font-size: 15px;
+  }
+
+  .cp-folder__actions {
+    flex-direction: row;
+    justify-content: center;
+    width: auto;
+    max-width: none;
+  }
+
+  .cp-folder__btn {
+    min-width: 180px;
+  }
+}
+
+/* ==========================================================
+   Desktop — 1024px and up
+   ========================================================== */
+@media (min-width: 1024px) {
+  .cp-folder {
+    padding: 72px 40px;
+  }
+
+  .cp-folder__card {
+    padding: 64px 40px 68px;
+    border-radius: 28px;
+  }
+
+  .cp-folder__title {
+    font-size: 32px;
+  }
+
+  .cp-folder__glow {
+    width: 420px;
+    height: 260px;
+    top: -120px;
+  }
+}
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .cp-folder__btn {
+    transition: none;
+  }
+}
