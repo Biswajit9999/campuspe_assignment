@@ -74,7 +74,7 @@
 /* ---------- Right visual ---------- */
 .od__annotation {
   display: block;
-  width: 256px;
+  width: 380px;
   max-width: 100%;
   margin-top: 12px;
 }
@@ -488,7 +488,6 @@
   .od__heading { font-size: 36px; }
   .od__lead { font-size: 16px; }
   .od__cta { width: auto; }
-  .od__annotation { width: 288px; }
   .od-step { padding: 16px; }
   .od-feed { padding: 20px; }
   .od-chips { margin: 16px 0 0; padding: 4px 0; }

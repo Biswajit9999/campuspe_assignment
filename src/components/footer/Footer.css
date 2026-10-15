@@ -292,9 +292,22 @@
 }
 
 .cp-footer__audience {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
   margin: 0;
   font-size: 12px;
   color: var(--cp-muted);
+}
+
+.cp-footer__audience::before {
+  content: "";
+  flex-shrink: 0;
+  width: 8px;
+  height: 8px;
+  background: #10b981;
+  border-radius: 50%;
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2);
 }
 
 /* ---------- Bottom bar ---------- */

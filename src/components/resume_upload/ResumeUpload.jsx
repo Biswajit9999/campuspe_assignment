@@ -3,7 +3,6 @@ import {
   FiArrowUp,
   FiCheck,
   FiFileText,
-  FiSearch,
   FiX,
   FiZap,
 } from "react-icons/fi";
@@ -185,7 +184,7 @@ const steps = [
   { icon: FiCheck, title: "Resume analyzed", subtitle: "Ready in 4s", tone: "green", showDot: true },
   { icon: FiCheck, title: "Skills matched", subtitle: "Deep taxonomy", tone: "purple" },
   { icon: FiCheck, title: "Experience matched", subtitle: "Contextual seniority", tone: "purple" },
-  { icon: FiSearch, title: "1,000+ sources searched", subtitle: "Real-time aggregators", tone: "blue" },
+  { icon: FiCheck, title: "1,000+ sources searched", subtitle: "Real-time aggregators", tone: "blue" },
 ];
 
 /* ==========================================================

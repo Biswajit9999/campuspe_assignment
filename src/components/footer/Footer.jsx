@@ -68,8 +68,8 @@ const socials = [
   { label: "Instagram", href: "#", Icon: FaInstagram },
   { label: "X", href: "#", Icon: FaXTwitter },
   { label: "Facebook", href: "#", Icon: FaFacebookF },
-  { label: "YouTube", href: "#", Icon: FaYoutube },
   { label: "WhatsApp", href: "#", Icon: FaWhatsapp },
+  { label: "YouTube", href: "#", Icon: FaYoutube },
 ];
 
 const Footer = () => {

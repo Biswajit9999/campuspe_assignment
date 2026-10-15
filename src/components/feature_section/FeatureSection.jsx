@@ -249,7 +249,7 @@ export const employerSectionData = {
       description:
         "Find matched candidates, connect with them and move from shortlist to offer in one streamlined workflow.",
       tags: [
-        { label: "+2 DAYS", variant: "solid" },
+        { label: "<2 DAYS", variant: "solid" },
         { label: "57% Faster Hiring", variant: "green" },
       ],
     },

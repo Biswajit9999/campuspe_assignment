@@ -20,7 +20,7 @@ const slides = [
   { src: screen5, alt: "CampusPe college profile screen" },
 ];
 
-const AUTOPLAY_MS = 3500;
+const AUTOPLAY_MS = 1500;
 const SWIPE_THRESHOLD = 40;
 
 const AppShowcase = () => {

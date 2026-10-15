@@ -8,7 +8,6 @@ import {
   FaHome,
   FaWallet,
 } from "react-icons/fa";
-// import annotationLabel from "./assets/annotation-label.png";
 import "./OpportunityDiscovery.css";
 const annotationLabel = `${process.env.PUBLIC_URL}/images/Annotation.png`;
 /* ------------------------------------------------------------------ */
@@ -38,7 +37,7 @@ const FILTERS = ["All", "Colleges", "Jobs", "Internships", "Freelance", "Part-ti
 const ITEMS = [
   {
     id: "iim",
-    logo: <span className="od-logo od-logo--iim">IIM</span>,
+    logo: "/images/iim.png",
     title: "IIM Bangalore",
     badge: { label: "Top College", tone: "purple" },
     meta: [
@@ -52,7 +51,7 @@ const ITEMS = [
   },
   {
     id: "product-intern",
-    logo: <span className="od-logo od-logo--google">G</span>,
+    logo: "/images/google.png",
     title: "Product Intern",
     badge: { label: "Internship", tone: "blue" },
     meta: [
@@ -66,7 +65,7 @@ const ITEMS = [
   },
   {
     id: "marketing-gig",
-    logo: <span className="od-logo od-logo--notion">N</span>,
+    logo: "/images/marketing.png",
     title: "Marketing Gig",
     badge: { label: "Freelance", tone: "green" },
     meta: [
@@ -146,7 +145,7 @@ function FeedItem({ item }) {
   return (
     <li className="od-item">
       <div className="od-item__top">
-        <div className="od-item__logo">{item.logo}</div>
+        <div className="od-item__logo"><img src={item.logo} alt="" loading="lazy" /></div>
 
         <div className="od-item__info">
           <div className="od-item__title-row">
