@@ -9,8 +9,8 @@ import ResumeUpload from "./resume_upload/ResumeUpload";
 const Home = () => {
   return (
     <Layout>
-        <HeroSection/>
-        <PartnersMarquee/>
+      <HeroSection />
+      <PartnersMarquee />
       <OpportunityDiscovery />
       <ResumeUpload />
       <FeatureSections />
