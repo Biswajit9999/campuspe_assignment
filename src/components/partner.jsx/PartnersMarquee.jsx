@@ -10,8 +10,8 @@ import "./PartnersMarquee.css";
 const PARTNERS = [
   { name: "Ginserv", src: "/images/ginserv.png" },
   { name: "Startup Karnataka", src: "/images/startup_karnataka.png" }, // ← finish this filename
-  { name: "Visvesvaraya Technological University", src: "/images/belgium.png" },        // ← add the path when you have the file
-  { name: "TalentSpotify", src: "/images/talent_spotify-removebg-preview.png" },    // ← finish this filename
+  { name: "Visvesvaraya Technological University", src: "/images/belgium.png" }, // ← add the path when you have the file
+  { name: "TalentSpotify", src: "/images/talent_spotify-removebg-preview.png" }, // ← finish this filename
   { name: "Radiant Info", src: "/images/radient_info.jpg" },
   { name: "DPIIT #startupindia", src: "/images/DPIIT.png" },
 ];
@@ -24,14 +24,27 @@ const PARTNERS = [
 function LogoItem({ partner, decorative = false }) {
   const { name, src, href } = partner;
   const content = src ? (
-    <img className="pm-logo__img" src={src} alt={decorative ? "" : name} loading="lazy" draggable="false" />
+    <img
+      className="pm-logo__img"
+      src={src}
+      alt={decorative ? "" : name}
+      loading="lazy"
+      decoding="async"
+      draggable="false"
+    />
   ) : (
     <span className="pm-logo__wordmark">{name}</span>
   );
 
   const Tag = href ? "a" : "div";
   const linkProps = href
-    ? { href, target: "_blank", rel: "noopener noreferrer", tabIndex: decorative ? -1 : 0, "aria-label": name }
+    ? {
+        href,
+        target: "_blank",
+        rel: "noopener noreferrer",
+        tabIndex: decorative ? -1 : 0,
+        "aria-label": name,
+      }
     : {};
 
   return (
@@ -49,7 +62,12 @@ function LogoItem({ partner, decorative = false }) {
  * - The 2nd copy is aria-hidden so screen readers only read logos once.
  * - `reverse` flips direction, `speed` is seconds per full loop (higher = slower).
  */
-export function LogoMarquee({ logos, speed = 30, reverse = false, label = "Our partners" }) {
+export function LogoMarquee({
+  logos,
+  speed = 30,
+  reverse = false,
+  label = "Our partners",
+}) {
   return (
     <div
       className="pm__viewport"
@@ -77,7 +95,11 @@ export function LogoMarquee({ logos, speed = 30, reverse = false, label = "Our p
 /* Section — default export                                            */
 /* ------------------------------------------------------------------ */
 
-export default function PartnersMarquee({ title = "Trusted by partners across India", logos = PARTNERS, speed = 30 }) {
+export default function PartnersMarquee({
+  title = "Trusted by partners across India",
+  logos = PARTNERS,
+  speed = 30,
+}) {
   return (
     <section className="pm" aria-labelledby="pm-title">
       <h2 id="pm-title" className="pm__title">

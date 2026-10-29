@@ -9,7 +9,6 @@ import {
   FaWallet,
 } from "react-icons/fa";
 import "./OpportunityDiscovery.css";
-const annotationLabel = `${process.env.PUBLIC_URL}/images/Annotation.png`;
 /* ------------------------------------------------------------------ */
 /* Data                                                                */
 /* ------------------------------------------------------------------ */
@@ -32,7 +31,14 @@ const STEPS = [
   },
 ];
 
-const FILTERS = ["All", "Colleges", "Jobs", "Internships", "Freelance", "Part-time"];
+const FILTERS = [
+  "All",
+  "Colleges",
+  "Jobs",
+  "Internships",
+  "Freelance",
+  "Part-time",
+];
 
 const ITEMS = [
   {
@@ -145,7 +151,9 @@ function FeedItem({ item }) {
   return (
     <li className="od-item">
       <div className="od-item__top">
-        <div className="od-item__logo"><img src={item.logo} alt="" loading="lazy" /></div>
+        <div className="od-item__logo">
+          <img src={item.logo} alt="" loading="lazy" />
+        </div>
 
         <div className="od-item__info">
           <div className="od-item__title-row">
@@ -180,7 +188,8 @@ function FeedItem({ item }) {
 
 export function OpportunityFeed({ className = "" }) {
   const [filter, setFilter] = useState("All");
-  const items = filter === "All" ? ITEMS : ITEMS.filter((i) => i.type === filter);
+  const items =
+    filter === "All" ? ITEMS : ITEMS.filter((i) => i.type === filter);
 
   return (
     <div className={`od-feed ${className}`}>
@@ -191,7 +200,9 @@ export function OpportunityFeed({ className = "" }) {
           </span>
           <div>
             <h3 className="od-feed__title">CampusPe Opportunity Feed</h3>
-            <p className="od-feed__sub">Colleges &amp; opportunities matched to you</p>
+            <p className="od-feed__sub">
+              Colleges &amp; opportunities matched to you
+            </p>
           </div>
         </div>
         <Badge tone="green" outlined>
@@ -202,7 +213,11 @@ export function OpportunityFeed({ className = "" }) {
 
       <div className="od-chips" role="group" aria-label="Filter opportunities">
         {FILTERS.map((f) => (
-          <FilterChip key={f} active={filter === f} onClick={() => setFilter(f)}>
+          <FilterChip
+            key={f}
+            active={filter === f}
+            onClick={() => setFilter(f)}
+          >
             {f}
           </FilterChip>
         ))}
@@ -218,7 +233,9 @@ export function OpportunityFeed({ className = "" }) {
         <a href="/" className="od-feed__link">
           View all matched opportunities <FaArrowRight size={14} aria-hidden />
         </a>
-        <span className="od-feed__updated">Curated for you • Updated daily</span>
+        <span className="od-feed__updated">
+          Curated for you • Updated daily
+        </span>
       </footer>
     </div>
   );
@@ -245,9 +262,9 @@ export default function OpportunityDiscovery() {
           </h2>
 
           <p className="od__lead">
-            Tell CampusPe your skills, preferences and goals. We continuously monitor company
-            career pages and job sources, find opportunities that match you, and notify you when
-            they appear.
+            Tell CampusPe your skills, preferences and goals. We continuously
+            monitor company career pages and job sources, find opportunities
+            that match you, and notify you when they appear.
           </p>
 
           <ol className="od__steps">
@@ -263,12 +280,9 @@ export default function OpportunityDiscovery() {
 
         <div className="od__visual">
           <OpportunityFeed />
-          <img
-            className="od__annotation"
-            src={annotationLabel}
-            alt="A mix of colleges, jobs, internships and gigs — all in one place."
-            loading="lazy"
-          />
+          <p className="od__annotation">
+            A mix of colleges, jobs, <br/> internships and gigs — all in one place.
+          </p>
         </div>
       </div>
     </section>

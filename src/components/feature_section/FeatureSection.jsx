@@ -85,6 +85,7 @@ export const FeatureCard = ({ number, label, badge, title, description, tags = [
    ========================================================== */
 const FeatureSection = ({
   id,
+  sectionRef,
   eyebrow,
   title,
   highlight,
@@ -94,7 +95,7 @@ const FeatureSection = ({
   ctaHref = "#",
   items = [],
 }) => (
-  <section className="cp-feature" id={id}>
+  <section className="cp-feature anchor-section" id={id} ref={sectionRef}>
     <div className="cp-feature__container">
       {/* heading block */}
       <div className="cp-feature__intro">
@@ -261,9 +262,9 @@ export const employerSectionData = {
    Use:  import { FeatureSections } from "./component/feature-section/FeatureSection";
          <FeatureSections />
    ========================================================== */
-export const FeatureSections = () => (
+export const FeatureSections = ({ collegesRef, employersRef }) => (
   <>
-    <FeatureSection {...collegeSectionData} />
-    <FeatureSection {...employerSectionData} />
+    <FeatureSection {...collegeSectionData} sectionRef={collegesRef}/>
+    <FeatureSection {...employerSectionData} sectionRef={employersRef}/>
   </>
 );
